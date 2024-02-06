@@ -185,7 +185,8 @@ function movingText(){ ////////INCLUDES AUDIO PLAYBACK////////////
       vignetteColor = (255);
 
       if (audioFiles[audioFileSelect].isPlaying()==false){
-        let sampleSpeed = hoverXPos/400;
+        let sampleSpeed = hoverXPos/300;
+        //let sampleSpeed = t*8;
         distLevel = constrain(1-(yA[i]/2),0,1);
         print(audioFileSelect)
         audioFiles[audioFileSelect].play(0,sampleSpeed,1,i*loopDuration,loopDuration); 

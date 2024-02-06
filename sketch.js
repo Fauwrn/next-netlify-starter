@@ -1,9 +1,11 @@
-let cam;
 let windowAspect;
 
 let portWPos;
 let contentBoxW;
 let descTextAlign;
+let mainTextWidth;
+let portraitPicDim;
+let monogramPos;
 
 let homelink
 
@@ -41,15 +43,20 @@ function draw() {
   if (windowAspect < 1){
     mobileAspect();
     portWPos = width*0.5;
-    contentBoxW = width*1.1;
+    contentBoxW = 580;
     descTextAlign = width*0.5; 
-    
+    mainTextWidth = width*0.70;
+    portraitPicDim = 300;
+    monogramPos = width*0.5;
 
   } else {
     desktopAspect()
     portWPos = width*0.3;
     contentBoxW = width*0.75;
     descTextAlign = width*0.65; 
+    mainTextWidth = width*0.35;
+    portraitPicDim = 400*(windowAspect/2);
+    monogramPos = width*0.135;
   }
 
   ////Content Box
@@ -59,18 +66,19 @@ function draw() {
   translate(mouseWRatio*paralaxAmt,mouseHRatio*paralaxAmt); ///PARALAXING
   rect(width*0.5, 400, contentBoxW, 600); //content box
   ////
-  image(portrait, portWPos, 400,400*windowAspect/2,400*windowAspect/2); //portrait
-  image(gif, width*0.82, 605,200,200); //portrait
+  image(portrait, portWPos, 400,portraitPicDim,portraitPicDim); //portrait
+  image(gif, width*0.82, 605,200,200); //gif
   gif.play();
   staticText();
   textAlign(CENTER);
+
   //text(windowAspect,width/2,height*0.8); //debug aspect ratio
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   windowAspect = width / height;
-  homelink.position(width*0.135, 115);
+  homelink.position(monogramPos, 115);
 } 
 
 function staticText(){
@@ -84,14 +92,10 @@ function staticText(){
   textAlign(LEFT,TOP);
   textWrap(WORD);
   //main text
-  text('I make things - Sound and visuals.\nI studied Games design at college and am currently studying creative computing at CCI for a year, in between my BA studies in Sound Arts. \n \nI’m Interested in Ambient, Drone and Shoegaze, and ‘creativly’ often seem to fall back onto pixel art/glitch and ghosts.\n \nI spend a lot of my free time improvising with guitar, effects Ive made myself and singing (as long as nobody else is about).',descTextAlign, 250, width*0.35); //HEADER
-  monogram();
-} 
-
-function monogram(){
+  text('I make things - Sound and visuals.\nI studied Games design at college and am currently studying creative computing at CCI for a year, in between my BA studies in Sound Arts. \n \nI’m Interested in Ambient, Drone and Shoegaze, and ‘creativly’ often seem to fall back onto pixel art/glitch and ghosts.\n \nI spend a lot of my free time improvising with guitar, effects Ive made myself and singing (as long as nobody else is about).\n\nIf youd like to get in contact please email me at:\nbenthorn13@gmail.com',descTextAlign, 250, mainTextWidth); //HEADER
   textSize(32);
-  text('Þ',width*0.135, 100); //monogram
-}
+  text('Þ',monogramPos, 100); //monogram
+} 
 
 function desktopAspect(){
 
@@ -101,11 +105,3 @@ function mobileAspect(){
   //scale(0.5);
   //textAlign(CENTER);
 }
-
-/*
-function mousePressed() {
-  if (colorValue === 0) {
-  } else {
-  }
-}
-*/
