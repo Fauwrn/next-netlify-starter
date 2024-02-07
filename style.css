@@ -1,7 +1,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  color:white;
+  color:black;
+  overflow: hidden;
   
 }
 
@@ -13,6 +14,7 @@ a:link {
 
 canvas {
   display: block;
+  color:black;
 }
 
 img {

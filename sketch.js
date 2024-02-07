@@ -6,8 +6,8 @@ let descTextAlign;
 let mainTextWidth;
 let portraitPicDim;
 let monogramPos;
-
-let homelink
+let centering;
+let homelink;
 
 function preload() {
   ///////////////////////////////////////////////   load fonts
@@ -25,14 +25,15 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   background(255);
+  //framerate
   homelink = createA('obscurus.html','');
-  homelink.position(width*0.135, 115);
-  homelink.size(40,40);
+  //homelink.position(width*0.135, 115);
+  //homelink.size(40,40);
+  windowResized();
 
 }
 
 function draw() {
-  windowResized();
   background(0);  //sets background
   let mouseWRatio = 0.5-(mouseX/width);
   let mouseHRatio = 0.5-(mouseY/height);
@@ -48,6 +49,19 @@ function draw() {
     mainTextWidth = width*0.70;
     portraitPicDim = 300;
     monogramPos = width*0.5;
+    if(windowAspect < 0.8){
+      centering = windowAspect;
+
+      translate(width*(centering/4),0);
+      //scale(centering);
+    }
+
+  } else if (windowAspect > 2) {
+    portraitPicDim = 400;
+    centering = windowAspect;
+    //centering = 0.5;
+    //translate(width*0.25,0);
+    //scale(height*0.0013);
 
   } else {
     desktopAspect()
@@ -58,7 +72,7 @@ function draw() {
     portraitPicDim = 400*(windowAspect/2);
     monogramPos = width*0.135;
   }
-
+  //translate(width*0.5,height*0.5);
   ////Content Box
   noStroke();
   rectMode(CENTER);
@@ -71,8 +85,7 @@ function draw() {
   gif.play();
   staticText();
   textAlign(CENTER);
-
-  //text(windowAspect,width/2,height*0.8); //debug aspect ratio
+  text(round(windowAspect,2)+' w: '+width+' h: '+height,width/2,height*0.8); //debug aspect ratio
 }
 
 function windowResized() {
