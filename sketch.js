@@ -49,12 +49,14 @@ function draw() {
     mainTextWidth = width*0.70;
     portraitPicDim = 300;
     monogramPos = width*0.5;
+    /*
     if(windowAspect < 0.8){
       centering = windowAspect;
 
       translate(width*(centering/4),0);
       //scale(centering);
     }
+    */
 
   } else if (windowAspect > 2) {
     portraitPicDim = 400;
