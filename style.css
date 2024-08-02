@@ -1,22 +1,93 @@
 html, body {
   margin: 0;
   padding: 0;
-  color:black;
+  color:rgb(255, 255, 255);
   overflow: hidden;
-  
 }
 
-a:link {
-  color: black;
-  background-color: transparent;
+.averia-serif-libre-light {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.averia-serif-libre-regular {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.averia-serif-libre-bold {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.averia-serif-libre-light-italic {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.averia-serif-libre-regular-italic {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.averia-serif-libre-bold-italic {
+  font-family: "Averia Serif Libre", serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+a {
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 
 canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: -1;
+  
   display: block;
   color:black;
 }
 
+
+h1 {
+  font-size: 32px;
+  color: white;
+  line-height: 2.0;
+  text-shadow: 2px 2px 2px black;
+  font-family: Averia Serif Libre, sans-serif;
+}
+
+p {
+  font-size: 24px;
+  color: white;
+  line-height: 2.0;
+  text-shadow: 2px 2px 2px black;
+  font-family: Averia Serif Libre, sans-serif;
+}
+
 img {
   image-rendering: pixelated;
+}
+
+.container {
+  max-width: 640px;
+  margin: 1em auto;
+  padding: 1em;
+  font-family: serif;
+  text-align: center;
+  font-size: 18px;
+  overflow: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
 }
