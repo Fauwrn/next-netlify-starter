@@ -1,0 +1,12 @@
+html, body {
+    margin: 00;
+    padding: 0;
+    background-color: black;
+  }
+  canvas {
+    display: block;
+  }
+  
+  element {
+    overflow-x: hidden;
+  }

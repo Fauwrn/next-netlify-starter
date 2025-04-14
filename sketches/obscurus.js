@@ -192,7 +192,6 @@ function movingText(){ ////////INCLUDES AUDIO PLAYBACK////////////
         audioFiles[audioFileSelect].play(0,sampleSpeed,0.85,i*loopDuration,loopDuration); 
       }
      
-
     } else {
       fill(255);//Sets text color to white if NOT hovering over position
       vignetteColor = (0);

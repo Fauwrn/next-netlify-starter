@@ -4,11 +4,13 @@ let image_movement = 0;
 let image_movement_rand = 0;
 let x = 0;
 let y = 0;
+let bio = 'Benjamin Thorn is an artist and designer whose work as a digital artist explores virtual space as an interface for software instruments, focusing on alienation and the politics of aesthetics in obscurantism.';
 function preload() {
   ///////////////////////////////////////////////   load images
   bgImg = loadImage('assets/background_images/Tree04bw.png');
   portrait = loadImage('assets/Portrait1.png');
   gif = loadImage('assets/PlayerBW.gif');
+  entrance = loadImage('assets/images/entrance_bw.png');
 
 }
 
@@ -17,6 +19,7 @@ function setup() {
   background(255);
   windowResized();
   noSmooth()
+  
 
 }
 
@@ -39,7 +42,7 @@ function draw() {
   image(bgImg, width*0.5, height*0.5, bgImg.width*0.35, bgImg.height*0.35); //background image
   pop();
   
-
+  
   
   push();
   textAlign(CENTER,CENTER)
@@ -48,12 +51,25 @@ function draw() {
   stroke(0)
   text('Benjamin Thorn', x, y)
   pop();
+
+
   
   borderBoxes();
 
   push();
   imageMode(CENTER);
   image(gif,width*0.5,height*0.5);
+  image(entrance,width*0.5,height*0.85, entrance.width*1, entrance.height*1);
+  pop();
+
+  push();
+  textAlign(CENTER,TOP)
+  textSize(18)
+  fill(255)
+  stroke(0)
+  rectMode(CENTER)
+  text(bio, width*0.5, 140, width*0.5)
+  //instead of text file, turn it into array with each word 
   pop();
 
 }
