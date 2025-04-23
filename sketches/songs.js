@@ -5,6 +5,10 @@ let image_movement_rand = 0;
 let x = 0;
 let y = 0;
 
+let song;
+let erosion;
+
+
 let bioString = 'Benjamin Thorn is an artist and designer whose work as a digital artist explores virtual space as an interface for software instruments, focusing on alienation and the politics of aesthetics in obscurantism.';
 let bioStringShuffled= '';
 let bioArray = [];
@@ -22,6 +26,8 @@ function preload() {
   gif = loadImage('assets/PlayerBW.gif');
   entrance = loadImage('assets/images/entrance_bw.png');
 
+  erosion = loadStrings('/assets/songs/erosion.txt');
+
 }
 
 function setup() {
@@ -35,6 +41,7 @@ function setup() {
 
   stylingArray = split(stylingString, ' ');
 
+  song = erosion;
 }
 
 function draw() {
@@ -44,7 +51,7 @@ function draw() {
   x = lerp(x, mouseX, 0.05);
   y = lerp(y, mouseY, 0.05);
   let paralaxAmt = 10;
-  push();
+  push(); 
   
   if(frameCount%60 == 0 ) {
     image_movement_rand = random(10)
@@ -91,35 +98,21 @@ function draw() {
   rectMode(CENTER)
   textAlign(CENTER,TOP)
   
-  /*
+  
   fill(0)
   stroke(255)
-  hoverBoxHeight = 50
-  rect(width*0.5,140+(hoverBoxHeight/2),width*0.5,hoverBoxHeight)
-  */
-
+  boxHeight = song.length*20
+  
+  boxWidth = 100
+  
+  rect(width*0.5, 140, boxWidth, 50)
   textSize(16)
   fill(255)
   stroke(0)
 
-  if(frameCount % 30 == 0 ) {
-    bioArrayShuffled = bioArray
-    //bioArrayShuffled = shuffle(bioArray)
-
-    bioRandPos = int(random(bioArray.length))
-
-    arrayCopy(stylingArray, int(random(stylingArray.length)), bioArrayShuffled, bioRandPos, 1)
-
-    //arrayCopy(bioArray, bioRandPos, bioArrayShuffled, bioRandPos, 1)
-
-    bioStringShuffled = join(bioArrayShuffled,' ')
+  for (let i = 0; i < song.length; i++) {
+    text(song[i], width*0.5, 140+(i*20), width*0.5)
   }
-  if(frameCount % 120 == 0 ) {
-    bioArray = split(bioString, ' ');
-    bioStringShuffled = bioString;
-  }
-
-  text(bioStringShuffled, width*0.5, 140, width*0.5)
   pop();
 
 

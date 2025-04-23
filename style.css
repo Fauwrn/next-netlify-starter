@@ -2,8 +2,10 @@ html, body {
   margin: 0px 0px;
   padding: 0;
   color:rgb(0, 0, 0);
+  text-shadow: 1px 1px 1px black;
+
   overflow-x: hidden;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0);
   /*font-family: "Averia Serif Libre", sans-serif;*/
   font-family: "Radio Canada Big", sans-serif;
 }
@@ -35,7 +37,6 @@ html, body {
 
 .topnav {
   overflow: hidden;
-  background-color: #000000;
   list-style-type: none;
 }
 
@@ -43,7 +44,7 @@ html, body {
 .topnav a {
   float: right;
   display: block;
-  color: #f2f2f2;
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -65,7 +66,6 @@ html, body {
   top: 20px;
   /*border: 1px solid #ffffff;*/
   font-family: Averia Serif Libre, sans-serif;
-  color: rgb(11, 1, 1);
   text-decoration: none;
 }
 
@@ -73,6 +73,8 @@ a {
   color: white;
   text-decoration: none;
   line-height: 1;
+  text-shadow: 1px 1px 1px black;
+
 }
 
 canvas {
@@ -102,7 +104,6 @@ canvas {
 }
 
 p {
-  font-size: 18px;
   color: white;
   line-height: 1.0;
   text-shadow: 1px 1px 1px black;
@@ -135,7 +136,6 @@ img {
     font-size: 24px;
   }
   
-
 .bottom {
   position: absolute;
   bottom: 0;

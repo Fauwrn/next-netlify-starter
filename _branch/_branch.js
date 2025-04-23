@@ -3,7 +3,12 @@
 let backgroundImg;
 let font;
 let textColour = 255;
-let cardScheme = 'grey';
+let cardScheme = 'indexed';
+
+let uitext_show = true;
+
+let midiOutput;
+
 
 //Timer
 var initialTimerValue = 600;
@@ -12,7 +17,6 @@ var timerValue;
 //Card Dimensions // cardH = 256 or 261 or 255
 const cardH = 255;
 const cardW = 192;
-
 
 var cardCount = 6;
 
@@ -103,6 +107,11 @@ function setup() {
   timerValue = initialTimerValue;
   setInterval(timeIt, 1000);
 
+  WebMidi
+    .enable()
+    .then(() => console.log("WebMidi enabled!"))
+    .catch(err => alert(err));
+
   gridWPos = width / gridWDiv;
   gridHPos = height / gridHDiv;
 
@@ -116,6 +125,33 @@ function setup() {
   majorSlot_2 = new backgroundCard(gridWPos * (2), majorGridH)
   majorSlot_3 = new backgroundCard(gridWPos * (3), majorGridH)
   majorSlot_4 = new backgroundCard(gridWPos * (4), majorGridH)
+
+  midiOutput = WebMidi.getOutputByName("Max 1");
+  console.log(midiOutput);
+  midiOutput.channels[1].sendControlChange(1, 0);
+  midiOutput.channels[1].sendControlChange(2, 0);
+  midiOutput.channels[1].sendControlChange(3, 0);
+  midiOutput.channels[1].sendControlChange(4, 0);
+
+}
+
+function onEnabled() {
+  //WebMIDI Example Output Setup:
+  
+  console.log("WebMIDI Enabled");
+  
+  // Inputs
+  WebMidi.inputs.forEach(input => console.log("Input: ",input.manufacturer, input.name));
+  
+  // Outputs
+  WebMidi.outputs.forEach(output => console.log("Output: ",output.manufacturer, output.name));
+  
+  //Looking at the first output available to us
+  console.log(WebMidi.outputs[0]);
+
+  //assign that output as the one we will use later
+  //myOutput = WebMidi.outputs[0];
+
 }
   
 function draw() {
@@ -230,8 +266,9 @@ function draw() {
     image(major_card_graphic[shuffledMajorDeck[majorCardID]], majorDeck[majorCardID].x, majorDeck[majorCardID].y, cardW, cardH);
   }
 
-
-  uitext();
+  if (uitext_show == true){
+    uitext();
+  }
   //textSize(24)
 
   timer()
@@ -247,7 +284,8 @@ function mousePressed() {
   if (majorDeck.length > 0){
     majorDeck[majorDeck.length-1].pressed();
   }
-  //majorDeck[majorDeck.length-1].pressed();
+
+
 }
 
 function mouseReleased() {
@@ -258,15 +296,32 @@ function mouseReleased() {
     } else if (minorHover_1 === true){ //apply top of minor deck to loop 1
       drawMinorCard()
       minorEffectCardPlayed_1 = shuffledMinorDeck[minorCardID]
+      
+      console.log("Sending CC:", minorEffectCardPlayed_1);
+      midiOutput.channels[1].sendControlChange(1, minorEffectCardPlayed_1);
+      
+
     } else if (minorHover_2 === true){ //apply top of minor deck to loop 2
       drawMinorCard()
       minorEffectCardPlayed_2 = shuffledMinorDeck[minorCardID]
+
+      console.log("Sending CC:", minorEffectCardPlayed_2);
+      midiOutput.channels[1].sendControlChange(2, minorEffectCardPlayed_2);
+
     } else if (minorHover_3 === true){ //apply top of minor deck to loop 3
       drawMinorCard()
       minorEffectCardPlayed_3 = shuffledMinorDeck[minorCardID]
+
+      console.log("Sending CC:", minorEffectCardPlayed_3);
+      midiOutput.channels[1].sendControlChange(3, minorEffectCardPlayed_3);
+
     } else if (minorHover_4 === true){ //apply top of minor deck to loop 4
       drawMinorCard()
       minorEffectCardPlayed_4 = shuffledMinorDeck[minorCardID]
+
+      console.log("Sending CC:", minorEffectCardPlayed_4);
+      midiOutput.channels[1].sendControlChange(4, minorEffectCardPlayed_4);
+
     }
     minorDeck[minorDeck.length-1].released();
   }
@@ -343,8 +398,7 @@ function discardMajorCard() {
 */
 
 function uitext(){
-    var gridWPos = width / gridWDiv;
-    var gridHPos = height / gridHDiv; 
+
     //UI Text
     push();
     fill(textColour);
@@ -390,11 +444,14 @@ function uitext(){
     text(minorDeck.length+' cards left', gridWPos * 5 + (cardW/2), minorGridH)
     text(minorEffectPlayed+' Discarded', gridWPos * 6 + (cardW/2), minorGridH)
     // Applied Cards
-    text(minorEffectCardPlayed_1, gridWPos * 1 + (cardW/2), minorGridH)
-    text(minorEffectCardPlayed_2, gridWPos * 2 + (cardW/2), minorGridH)
-    text(minorEffectCardPlayed_3, gridWPos * 3 + (cardW/2), minorGridH)
-    text(minorEffectCardPlayed_4, gridWPos * 4 + (cardW/2), minorGridH)
+    textAlign(CENTER, CENTER);
+    text(minorEffectCardPlayed_1, gridWPos * (1) + cardW/2, gridHPos * 4.5)
+    text(minorEffectCardPlayed_2, gridWPos * (2) + cardW/2, gridHPos * 4.5)
+    text(minorEffectCardPlayed_3, gridWPos * (3) + cardW/2, gridHPos * 4.5)
+    text(minorEffectCardPlayed_4, gridWPos * (4) + cardW/2, gridHPos * 4.5)
     
+
+
     pop()
 }
 
@@ -404,9 +461,17 @@ function timer() {
   fill(0)
   stroke(255)
   strokeWeight(2.5)
-  textAlign(CENTER,BOTTOM);
+  textAlign(CENTER,TOP);
   timerPosX = gridWPos*4
-  timerPosY = gridHPos*8
+  timerPosY = gridHPos*8.5
+
+  //rect(gridWPos, gridHPos*8, gridWPos*5 + cardW, cardH*0.5);
+  fill(255)
+  rect(gridWPos, gridHPos*8.5, ((gridWPos*5+ cardW)/initialTimerValue)*timerValue, cardH*0.1);
+
+  fill(0)
+  stroke(255)
+  strokeWeight(2.5)
 
   if (timerValue > 0) {
     text(timerValue + ' seconds left', timerPosX, timerPosY);
@@ -415,10 +480,6 @@ function timer() {
     text('end', timerPosX, timerPosY);
   }
 
-
-  //rect(gridWPos, gridHPos*8, gridWPos*5 + cardW, cardH*0.5);
-  fill(255)
-  rect(gridWPos, gridHPos*8.5, ((gridWPos*5+ cardW)/initialTimerValue)*timerValue, cardH*0.1);
   pop();
 }
 
@@ -437,19 +498,18 @@ function stying(){
       textAlign(CENTER,BOTTOM);
       fill(0)
       rectMode(CENTER)
-      rect(gridWPos * (i+1) + cardW/2, gridHPos * 4.5 , 30, 30);
+      rect(gridWPos * (i+1) + cardW/2, gridHPos * 4.5 , cardW, 30);
       //rect(gridWPos * (i+1), gridHPos * 5 - cardH/5, cardW, cardH/8);
     };
-    image(playerGif,gridWPos * 4 - (playerGif.width/2), gridHPos - (playerGif.height/2))
+    //image(playerGif,gridWPos * 4 - (playerGif.width/2), gridHPos - (playerGif.height/2))
 
     line(gridWPos * 4.5 + (cardW/2), gridHPos * 2, gridWPos * 4.5 + (cardW/2), gridHPos * 8)
     pop();
-
 }
 
 function keyTyped() {
-    if (key === ' ') {
-        
+    if (key === 't') {
+      uitext_show = !uitext_show
     } else if (key === '1'){
 
     }
@@ -464,17 +524,23 @@ function DEBUG_gridOutline(){
   var gridHPos = height / gridHDiv;   
   stroke(255)
   strokeWeight(2.5)
+
   for (let i = 0; i < gridWPos; i += 1) {
-      line(gridWPos*(i), 0, gridWPos*(i), height);
-      line(gridWPos*(i+0.5), 0, gridWPos*(i+0.5), height);
+    
+    line(gridWPos*(i), 0, gridWPos*(i), height);
+    line(gridWPos*(i*1.5), 0, gridWPos*(i*1.5), height);
+
   };
   for (let i = 0; i < gridHPos; i += 1) {
-    line(0, gridHPos*i, width, gridHPos*i);
+
+    line(0, gridHPos*(i), width, gridHPos*(i));
+
   };
+
   stroke(0)
   fill(255)
   textSize(36)
-  text(shuffledMinorDeck,200,100) //why are there duplicates?
-  text(shuffledMajorDeck,200,150) //why are there duplicates?
+  //text(shuffledMinorDeck,200,100) //why are there duplicates?
+  //text(shuffledMajorDeck,200,150) //why are there duplicates?
   pop()
 }
