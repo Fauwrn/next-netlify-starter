@@ -2,12 +2,48 @@ html, body {
   margin: 0px 0px;
   padding: 0;
   color:rgb(0, 0, 0);
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 5px 5px 5px black;
 
   overflow-x: hidden;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   /*font-family: "Averia Serif Libre", sans-serif;*/
   font-family: "Radio Canada Big", sans-serif;
+}
+
+.crimson-text-regular {
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.crimson-text-semibold {
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.crimson-text-bold {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.crimson-text-regular-italic {
+  font-family: "Crimson Text", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.crimson-text-semibold-italic {
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.crimson-text-bold-italic {
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .averia-serif-libre-light {
@@ -96,6 +132,10 @@ canvas {
 }
 .column.middle {
   width: 60%;
+}
+
+.column.middletwo {
+  width: 30%;
 }
 .row:after {
   content: "";

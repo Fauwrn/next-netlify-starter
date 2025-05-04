@@ -5,12 +5,12 @@ let image_movement_rand = 0;
 let x = 0;
 let y = 0;
 
-let bioString = 'Benjamin Thorn is an artist and designer whose work as a digital artist explores virtual space as an interface for software instruments, focusing on alienation and the politics of aesthetics in obscurantism.';
+let bioString = 'Benjamin Thorn is an artist and designer whose work as a digital artist explores virtual space as an interface for software instruments, focusing on alienation and the politics of aesthetics in obscurantism. Their practice also includes releasing and performing ambient-shoegaze music under the alias [my grey leaving].';
 let bioStringShuffled= '';
 let bioArray = [];
 let bioArrayShuffled = [];
 
-let stylingString = '***** {}{}{} [][][] ____ ------ &&&&& ^^^^^^ %%%% |||||| /////'
+let stylingString = '____ {}{}{} [][][] ***** ------ &&&&& ^^^^^^ %%%% |||||| /////'
 let stylingArray = [];
 let bioRandPos = 0;
 
@@ -75,7 +75,7 @@ function draw() {
   push();
   imageMode(CENTER);
   image(gif,width*0.5,height*0.5);
-  image(entrance,width*0.5,height*0.85, entrance.width*1, entrance.height*1);
+  //image(entrance,width*0.5,height*0.85, entrance.width*1, entrance.height*1);
   pop();
 
   push();
@@ -102,19 +102,18 @@ function draw() {
   fill(255)
   stroke(0)
 
-  if(frameCount % 30 == 0 ) {
+  if(frameCount % 60 == 0 ) {
     bioArrayShuffled = bioArray
     //bioArrayShuffled = shuffle(bioArray)
 
     bioRandPos = int(random(bioArray.length))
 
-    arrayCopy(stylingArray, int(random(stylingArray.length)), bioArrayShuffled, bioRandPos, 1)
-
-    //arrayCopy(bioArray, bioRandPos, bioArrayShuffled, bioRandPos, 1)
+    //arrayCopy(stylingArray, int(random(stylingArray.length)), bioArrayShuffled, bioRandPos, 1)
+    arrayCopy(stylingArray, 0, bioArrayShuffled, bioRandPos, 1)
 
     bioStringShuffled = join(bioArrayShuffled,' ')
   }
-  if(frameCount % 120 == 0 ) {
+  if(frameCount % 300 == 0 ) {
     bioArray = split(bioString, ' ');
     bioStringShuffled = bioString;
   }

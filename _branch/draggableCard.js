@@ -75,4 +75,4 @@ class card {
       this.dragging = false;
     }
     
-  }
+}

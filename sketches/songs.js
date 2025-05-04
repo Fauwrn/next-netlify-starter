@@ -5,7 +5,11 @@ let image_movement_rand = 0;
 let x = 0;
 let y = 0;
 
-let song;
+//Floating effect:
+let floatOffset
+let floatSpeed
+
+let song = [];
 let erosion;
 
 
@@ -42,70 +46,49 @@ function setup() {
   stylingArray = split(stylingString, ' ');
 
   song = erosion;
+
+  floatOffset = random(TWO_PI); 
+  floatSpeed = random(0.01, 0.03);
+
 }
 
 function draw() {
   background(color_mode);  //sets background
   let mouseWRatio = 0.5+(mouseX/width);
   let mouseHRatio = 0.5+(mouseY/height);
-  x = lerp(x, mouseX, 0.05);
-  y = lerp(y, mouseY, 0.05);
   let paralaxAmt = 10;
   push(); 
+
+  let floatY = sin(floatOffset) * 1; // drift up and down
+  translate(floatY, floatY);
   
   if(frameCount%60 == 0 ) {
     image_movement_rand = random(10)
   }
 
   image_movement = lerp(image_movement,image_movement_rand,0.01)
-  translate(image_movement,image_movement); ///image_movement
-  translate(-mouseWRatio*paralaxAmt,-mouseHRatio*paralaxAmt); ///PARALAXING
+  //translate(image_movement,image_movement); ///image_movement
+  //translate(-mouseWRatio*paralaxAmt,-mouseHRatio*paralaxAmt); ///PARALAXING
   imageMode(CENTER);
+
+
+  
+
+
   //image(bgImg, width*0.5, height*0.5, 1920, 1080); //background image
-  image(bgImg, width*0.5, height*0.5, bgImg.width*0.35, bgImg.height*0.35); //background image
-  pop();
-  
-  
-  
-  push();
-  textAlign(CENTER,CENTER)
-  textSize(32)
-  fill(255)
-  stroke(0)
-  text('Benjamin Thorn', x, y)
-  pop();
+  //image(bgImg, width*0.5, height*0.5, bgImg.width*0.35, bgImg.height*0.35); //background image  
+
+  //borderBoxes();
+
+  //image(gif,width*0.5,height*0.5);
+  //image(entrance,width*0.5,height*0.85, entrance.width*1, entrance.height*1);
+  //pop();
 
 
-  
-  borderBoxes();
-
-  push();
-  imageMode(CENTER);
-  image(gif,width*0.5,height*0.5);
-  image(entrance,width*0.5,height*0.85, entrance.width*1, entrance.height*1);
-  pop();
-
-  push();
-  textAlign(CENTER,TOP)
-  textSize(16)
-  fill(255)
-  stroke(0)
-  rectMode(CENTER)
-  //text(bioString, width*0.5, 140, width*0.5)
-  pop();
-
-  push();
+  //push();
   rectMode(CENTER)
   textAlign(CENTER,TOP)
-  
-  
-  fill(0)
-  stroke(255)
-  boxHeight = song.length*20
-  
-  boxWidth = 100
-  
-  rect(width*0.5, 140, boxWidth, 50)
+
   textSize(16)
   fill(255)
   stroke(0)
@@ -115,7 +98,7 @@ function draw() {
   }
   pop();
 
-
+  floatOffset += floatSpeed; // keep moving
 }
 
 function windowResized() {
