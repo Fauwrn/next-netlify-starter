@@ -2,12 +2,12 @@ html, body {
   margin: 0px 0px;
   padding: 0;
   color:rgb(0, 0, 0);
-  text-shadow: 5px 5px 5px black;
+  text-shadow: 1px 1px 0px black;
 
   overflow-x: hidden;
-  background-color: transparent;
-  /*font-family: "Averia Serif Libre", sans-serif;*/
+  background-color: black;
   font-family: "Radio Canada Big", sans-serif;
+  font-family: "Crimson Text", serif;
 }
 
 .crimson-text-regular {
@@ -46,24 +46,6 @@ html, body {
   font-style: italic;
 }
 
-.averia-serif-libre-light {
-  font-family: "Averia Serif Libre", serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-.averia-serif-libre-regular {
-  font-family: "Averia Serif Libre", serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-.averia-serif-libre-bold {
-  font-family: "Averia Serif Libre", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
 .radio-canada-big-regular {
   font-family: "Radio Canada Big", sans-serif;
   font-optical-sizing: auto;
@@ -71,9 +53,18 @@ html, body {
   font-style: normal;
 }
 
+canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  display: block;
+}
+
 .topnav {
   overflow: hidden;
   list-style-type: none;
+  position: relative;
+  z-index: 1;
 }
 
 /* Navbar links */
@@ -88,48 +79,30 @@ html, body {
 
 /* Links - change color on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: white;
+  text-shadow: 0px 0px 0px white;
   color: black;
-}
-
-.topnav ul {
-  list-style-type: none;
-  margin: 0px 0px;
-  padding: 0;
-  display: inline;
-  overflow: hidden;
-  position: fixed;
-  top: 20px;
-  /*border: 1px solid #ffffff;*/
-  font-family: Averia Serif Libre, sans-serif;
-  text-decoration: none;
 }
 
 a {
   color: white;
   text-decoration: none;
   line-height: 1;
-  text-shadow: 1px 1px 1px black;
-
-}
-
-canvas {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: -1;
-  display: block;
-  color:black;
+  text-shadow: 1px 1px 0px black;
 }
 
 .column {
   float: left;
   padding: 15px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
+
 .column.side {
   width: 20%;
 }
+
 .column.middle {
   width: 60%;
 }
@@ -137,6 +110,7 @@ canvas {
 .column.middletwo {
   width: 30%;
 }
+
 .row:after {
   content: "";
   display: table;
@@ -146,12 +120,21 @@ canvas {
 p {
   color: white;
   line-height: 1.0;
-  text-shadow: 1px 1px 1px black;
-  font-family: Averia Serif Libre, sans-serif;
+  text-shadow: 2px 2px 2px black;
+}
+
+h1 {
+  color: white;
+  font-size: 18px;
+  line-height: 1.0;
+  text-shadow: 1px 1px 0px black;
+  font-family: "Radio Canada Big", sans-serif;
 }
 
 img {
   image-rendering: pixelated;
+  position: relative;
+  z-index: 1;
 }
 
 .container {
@@ -162,19 +145,10 @@ img {
   text-align: center;
   font-family: Averia Serif Libre, sans-serif;
   font-size: 12px;
-  text-shadow: 1px 1px 1px black;
+  text-shadow: 1px 1px 0px black;
   line-height: 3.0;
 }
 
-  .container h1 {
-    font-size: 24px;
-  }
-
-  .container a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    font-size: 24px;
-  }
   
 .bottom {
   position: absolute;
@@ -189,7 +163,6 @@ img {
 .song {
   margin: 5em auto;
   padding: 1em;
-  background-color: black;
 
   color: white;
   max-width: 500px;

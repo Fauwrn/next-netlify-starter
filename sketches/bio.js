@@ -1,4 +1,5 @@
 let windowAspect;
+let canvas;
 let color_mode = 0;
 let image_movement = 0;
 let image_movement_rand = 0;
@@ -25,8 +26,10 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
-  background(255);
+  canvas = createCanvas(windowWidth, windowHeight);
+  canvas.position(0,0)
+  canvas.style('z-index','-1')
+
   windowResized();
   noSmooth();
   
@@ -38,7 +41,7 @@ function setup() {
 }
 
 function draw() {
-  background(color_mode);  //sets background
+  //background(color_mode);  //sets background
   let mouseWRatio = 0.5+(mouseX/width);
   let mouseHRatio = 0.5+(mouseY/height);
   x = lerp(x, mouseX, 0.05);
