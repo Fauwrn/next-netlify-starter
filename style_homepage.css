@@ -7,9 +7,6 @@ html, body {
   color: white;
   background-color: black;
 
-  color: black;
-  background-color: white;
-
   font-family: "Radio Canada Big", sans-serif;
   font-family: "Crimson Text", serif;
 }
@@ -86,7 +83,7 @@ a:hover {
 }
 
 a {
-  color: black;
+  color: white;
   text-decoration: none;
   line-height: 1;
 }
@@ -159,24 +156,6 @@ img {
   padding: 0;
   overflow: hidden;
   text-align: center;
-}
-
-.song {
-  margin: 5em auto;
-  padding: 1em;
-  max-width: 500px;
-  text-align: center;
-  font-family: Averia Serif Libre, sans-serif;
-  font-size: 10px;
-  text-shadow: 1px 1px 1px black;
-  line-height: 1.5;
-
-  border: 1px solid #ffffff;
-
-  .song h1 {
-    font-size: 24px;
-  }
-
 }
 
 * {

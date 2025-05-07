@@ -59,50 +59,30 @@ function draw() {
   imageMode(CENTER);
   //image(bgImg, width*0.5, height*0.5, 1920, 1080); //background image
   image(bgImg, width*0.5, height*0.5, bgImg.width*0.35, bgImg.height*0.35); //background image
-  pop();
-  
-  
-  
-  push();
+
+
   textAlign(CENTER,CENTER)
   textSize(32)
   fill(255)
+  strokeWeight(2)
   stroke(0)
   text('Benjamin Thorn', x, y)
-  pop();
-
 
   
   borderBoxes();
 
-  push();
   imageMode(CENTER);
   image(gif,width*0.5,height*0.5);
   //image(entrance,width*0.5,height*0.85, entrance.width*1, entrance.height*1);
   pop();
 
   push();
-  textAlign(CENTER,TOP)
-  textSize(16)
-  fill(255)
-  stroke(0)
-  rectMode(CENTER)
-  //text(bioString, width*0.5, 140, width*0.5)
-  pop();
-
-  push();
   rectMode(CENTER)
   textAlign(CENTER,TOP)
-  
-  /*
-  fill(0)
-  stroke(255)
-  hoverBoxHeight = 50
-  rect(width*0.5,140+(hoverBoxHeight/2),width*0.5,hoverBoxHeight)
-  */
 
-  textSize(16)
+  textSize(14)
   fill(255)
+  strokeWeight(2)
   stroke(0)
 
   if(frameCount % 60 == 0 ) {

@@ -1,11 +1,7 @@
 let windowAspect;
-let color_mode = 0;
-let image_movement = 0;
-let image_movement_rand = 0;
 let x;
 let y;
 var canvas
-
 
 
 function preload() {
@@ -32,11 +28,8 @@ function draw() {
   x = lerp(x, mouseX, 0.05);
   y = lerp(y, mouseY, 0.05);
 
-  
-  push();
   imageMode(CENTER);
   image(gif,x,y,gif.height/2,gif.width/2);
-  pop();
 }
 
 function windowResized() {
