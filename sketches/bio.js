@@ -68,9 +68,9 @@ function draw() {
   stroke(0)
   text('Benjamin Thorn', x, y)
 
-  
+  pop();
   borderBoxes();
-
+  push();
   imageMode(CENTER);
   image(gif,width*0.5,height*0.5);
   //image(entrance,width*0.5,height*0.85, entrance.width*1, entrance.height*1);
@@ -101,7 +101,7 @@ function draw() {
     bioStringShuffled = bioString;
   }
 
-  text(bioStringShuffled, width*0.5, 140, width*0.5)
+  text(bioStringShuffled, width*0.5, 130, width*0.5)
   pop();
 
 
