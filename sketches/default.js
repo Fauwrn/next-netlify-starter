@@ -7,7 +7,6 @@ var canvas
 function preload() {
   ///////////////////////////////////////////////   load images
   bgImg = loadImage('assets/background_images/Tree04bw.png');
-  portrait = loadImage('assets/Portrait1.png');
   gif = loadImage('assets/PlayerBW.gif');
   entrance = loadImage('assets/images/entrance_bw.png');
 

@@ -9,6 +9,8 @@ html, body {
 
   color: black;
   background-color: white;
+  outline-style: solid;
+  outline-color: white; 
 
   font-family: "Radio Canada Big", sans-serif;
   font-family: "Crimson Text", serif;
@@ -135,10 +137,23 @@ h1 {
   font-style: normal;
 }
 
+.div-img{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+}
+
 img {
   image-rendering: pixelated;
   position: relative;
-  z-index: -5;
+  transition: transform .5s;
+  width:300px;
+  height:300px;
+  margin:0 auto;
+}
+
+img:hover{
+  transform:scale(1.1);
 }
 
 .container {

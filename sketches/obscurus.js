@@ -37,21 +37,21 @@ let distLevel=0;                 //
 
 function preload() {
   ///////////////////////////////////////////////   load fonts
-  wikiText = loadStrings('assets/text.txt');
-  font = loadFont('assets/fonts/SHPinscher-Regular.otf');
-  fontTitle = loadFont('assets/fonts/Chomsky.otf');
-  fontMain = loadFont('assets/fonts/SHPinscher-Regular.otf');
+  wikiText = loadStrings('assets/obscurus/text.txt');
+  font = loadFont('assets/obscurus/fonts/SHPinscher-Regular.otf');
+  fontTitle = loadFont('assets/obscurus/fonts/Chomsky.otf');
+  fontMain = loadFont('assets/obscurus/fonts/SHPinscher-Regular.otf');
 
   ///////////////////////////////////////////////   load images
   for (let i = 0; i < numImages; i++) {
-    images[i] = loadImage('assets/images/img' + i + '.png');
+    images[i] = loadImage('assets/obscurus/images/img' + i + '.png');
   }
   soundFormats('mp3', 'wav');
   //soundFile = loadSound('assets/audio/audio2.wav');
   
   ///////////////////////////////////////////////   load audio files
   for (let i = 0; i < audioFilesCount; i++) {
-    audioFiles[i] = loadSound('assets/audio/audio' + i + '.wav');
+    audioFiles[i] = loadSound('assets/obscurus/audio/audio' + i + '.wav');
   }
 }
 
