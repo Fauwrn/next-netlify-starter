@@ -1,22 +1,48 @@
 let windowAspect;
 
+let currentSong = 0
 //Floating effect:
 let floatOffset
 let floatSpeed
-
-let song = [];
-let erosion;
-
+let song = []
+let blueSun,bridleway,emptyWalls,erosion,exhale,fallenTree,labyrinth,makeItClear,makeMeKnowMe,noMoreFun,oldNotes,overgrown,poemsOfYou,shelter,shesWatchingMe,silenceLens,sinkingStone,solitaire,somewhere,stopPretending,strained,theOtherNight,underTheDeadTree;
+let songName = [];
 
 
 function preload() {
   ///////////////////////////////////////////////   load images
   bgImg = loadImage('assets/background_images/Tree04bw.png');
-  portrait = loadImage('assets/Portrait1.png');
   gif = loadImage('assets/PlayerBW.gif');
   entrance = loadImage('assets/images/entrance_bw.png');
 
+  introduction = loadStrings('/assets/songs/introduction.txt');
+
+  shelter = loadStrings('/assets/songs/shelter.txt');
+  solitaire = loadStrings('/assets/songs/solitaire.txt');
+
+  blueSun = loadStrings('/assets/songs/blueSun.txt');
+  bridleway = loadStrings('/assets/songs/bridleway.txt');
+  emptyWalls = loadStrings('/assets/songs/emptyWalls.txt');
   erosion = loadStrings('/assets/songs/erosion.txt');
+  exhale = loadStrings('/assets/songs/exhale.txt');
+  fallenTree = loadStrings('/assets/songs/fallenTree.txt');
+  labyrinth = loadStrings('/assets/songs/labyrinth.txt');
+  makeItClear = loadStrings('/assets/songs/makeItClear.txt');
+  makeMeKnowMe = loadStrings('/assets/songs/makeMeKnowMe.txt');
+  noMoreFun = loadStrings('/assets/songs/noMoreFun.txt');
+  oldNotes = loadStrings('/assets/songs/oldNotes.txt');
+  overgrown = loadStrings('/assets/songs/overgrown.txt');
+  poemsOfYou = loadStrings('/assets/songs/poemsOfYou.txt');
+  shelter = loadStrings('/assets/songs/shelter.txt');
+  shesWatchingMe = loadStrings('/assets/songs/shesWatchingMe.txt');
+  silenceLens = loadStrings('/assets/songs/silenceLens.txt');
+  sinkingStone = loadStrings('/assets/songs/sinkingStone.txt');
+  somewhere = loadStrings('/assets/songs/somewhere.txt');
+  stopPretending = loadStrings('/assets/songs/stopPretending.txt');
+  strained = loadStrings('/assets/songs/strained.txt');
+  theOtherNight = loadStrings('/assets/songs/theOtherNight.txt');
+  underTheDeadTree = loadStrings('/assets/songs/stopPretending.txt');
+
 
 }
 
@@ -27,9 +53,11 @@ function setup() {
   canvas = createCanvas(windowWidth, windowHeight);
   canvas.position(0,0)
   canvas.style('z-index','-1')
-  
 
-  song = erosion;
+  
+  songName = [introduction, blueSun,bridleway,emptyWalls,erosion,exhale,fallenTree,labyrinth,makeItClear,makeMeKnowMe,noMoreFun,oldNotes,overgrown,poemsOfYou,shelter,shesWatchingMe,silenceLens,sinkingStone,solitaire,somewhere,stopPretending,strained,theOtherNight,underTheDeadTree];
+  song = songName[currentSong]
+  //songString = song[currentSong];
 
   floatOffset = random(TWO_PI); 
   floatSpeed = random(0.01, 0.02);
@@ -61,9 +89,19 @@ function draw() {
   pop();
 
   floatOffset += floatSpeed; // keep moving
+
+  textAlign(CENTER,BOTTOM)
+  text('song '+ currentSong, mouseX, mouseY)
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   windowAspect = width / height;
 } 
+
+function mousePressed(){
+  currentSong = currentSong % (songName.length-1)
+  currentSong ++
+  //currentSong % songName.length
+  song = songName[currentSong]
+}
