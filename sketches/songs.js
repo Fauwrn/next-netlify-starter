@@ -4,6 +4,7 @@ let currentSong = 0
 //Floating effect:
 let floatOffset
 let floatSpeed
+//Songs
 let song = []
 let blueSun,bridleway,emptyWalls,erosion,exhale,fallenTree,labyrinth,makeItClear,makeMeKnowMe,noMoreFun,oldNotes,overgrown,poemsOfYou,shelter,shesWatchingMe,silenceLens,sinkingStone,solitaire,somewhere,stopPretending,strained,theOtherNight,underTheDeadTree;
 let songName = [];

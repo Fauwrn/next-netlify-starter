@@ -3,12 +3,20 @@ let x;
 let y;
 var canvas
 
+let playerGif, fireGif, keyGif
+let gif = []
+
+let counter = 0;
 
 function preload() {
   ///////////////////////////////////////////////   load images
   bgImg = loadImage('assets/background_images/Tree04bw.png');
-  gif = loadImage('assets/PlayerBW.gif');
+  playerGif = loadImage('assets/PlayerBW.gif');
+  fireGif = loadImage('assets/images/fire.gif');
+  keyGif = loadImage('assets/images/key.gif');
   entrance = loadImage('assets/images/entrance_bw.png');
+
+  gif = [playerGif,fireGif,keyGif]
 
 }
 
@@ -28,7 +36,10 @@ function draw() {
   y = lerp(y, mouseY, 0.05);
 
   imageMode(CENTER);
-  image(gif,x,y,gif.height/2,gif.width/2);
+
+  image(gif[counter],x,y,gif[counter].height/2,gif[counter].width/2);
+
+  //line(pmouseX, pmouseY, mouseX, mouseY);
 }
 
 function windowResized() {
@@ -38,4 +49,6 @@ function windowResized() {
 
 function mousePressed(){
   clear();
+  counter ++
+  counter = counter % 3
 }
