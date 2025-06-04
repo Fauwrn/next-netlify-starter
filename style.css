@@ -134,6 +134,18 @@ h1 {
   font-style: normal;
 }
 
+::selection {
+  color: white;
+  background: black;
+  text-shadow: 0px 0px 0px white;
+}
+
+mark {
+  color: white;
+  background: black;
+  text-shadow: 0px 0px 0px white;
+}
+
 .div-img{
     justify-content: center;
     align-items: center;

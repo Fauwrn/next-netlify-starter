@@ -6,7 +6,7 @@ let textColour = 255;
 let cardScheme = 'bw_small';
 let pixelScale = 15;
 
-let uitext_show = true;
+let uitext_show = false;
 let debug = false;
 
 let midiOutput;
@@ -77,6 +77,7 @@ let spiral
 //Timer
 let initialTimerValue = 600;
 let timerValue;
+let timerInput;
 let timelineCards = [];
 let timelinePlacement;
 let timelinePlacements = [];
@@ -89,6 +90,17 @@ function preload() {
   backgroundImg = loadImage('assets/Tree04bw.png');
   playerGif = loadImage('assets/PlayerBW.gif');
   font = loadFont('assets/AveriaSerifLibre-Bold.ttf');
+
+  I_label = loadImage('assets/other/labels_b/I_label.png');
+  II_label = loadImage('assets/other/labels_b/II_label.png');
+  III_label = loadImage('assets/other/labels_b/III_label.png');
+  IV_label = loadImage('assets/other/labels_b/IV_label.png');
+
+  MajorDeck_label = loadImage('assets/other/labels_b/MajorDeck_label.png');
+  MajorDiscard_label = loadImage('assets/other/labels_b/MajorDiscard_label.png');
+  MinorDeck_label = loadImage('assets/other/labels_b/MinorDeck_label.png');
+  MinorDiscard_label = loadImage('assets/other/labels_b/MinorDiscard_label.png');
+  
 
   for (let i = 0; i < loopLimit; i++) {
 
@@ -118,6 +130,7 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
   noSmooth()
+  initialTimerValue = getItem('setupTime');
   timerValue = initialTimerValue;
   setInterval(timeIt, 1000);
 
@@ -165,6 +178,12 @@ function setup() {
   midiOutput.channels[1].sendControlChange(4, 0);
   midiOutput.channels[1].sendControlChange(5, 0);
   /////////////////////////////////////////////////////////////////////////
+
+  //timerInput = createInput();
+  //timerInput.position(width/2, height/2);
+
+  //timerValue = timerInput.value();
+
 }
 
 
@@ -185,6 +204,7 @@ function draw() {
   background(0);
   //translate(alignCorrection,0); // makes everything central, but then the mouse pos is off
   stying();
+
 
   //////////////////////////////draws shuffled minor deck//////////////////////////////
   if (minor.deck.length == 0){
@@ -242,6 +262,7 @@ function draw() {
     } else if (isLooping[i] === true && isLoopingForward[i] === false ){
       looping_graphic[i] = looping_graphic_true_backward
     }
+
     image(looping_graphic[i], gridWPos * (i + 1), gridHPos * 5, looping_graphic[i].width * pixelScale, looping_graphic[i].height * pixelScale )
 
   }
@@ -271,6 +292,18 @@ function draw() {
     major.cardID = major.deck[i].update();
     major.deck[i].show(major.cardGraphics[major.deckShuffled[major.cardID]]);
   }
+
+  //labels
+  image(I_label, gridWPos * (1), gridHPos * 1.5, I_label.width * pixelScale, I_label.height * pixelScale )
+  image(II_label, gridWPos * (2), gridHPos * 1.5, II_label.width * pixelScale, II_label.height * pixelScale )
+  image(III_label, gridWPos * (3), gridHPos * 1.5, III_label.width * pixelScale, III_label.height * pixelScale )
+  image(IV_label, gridWPos * (4), gridHPos * 1.5, IV_label.width * pixelScale, IV_label.height * pixelScale )
+  image(MajorDeck_label, gridWPos * (5), gridHPos * 1.5, MajorDeck_label.width * pixelScale, MajorDeck_label.height * pixelScale )
+  image(MajorDiscard_label, gridWPos * (6), gridHPos * 1.5, MajorDiscard_label.width * pixelScale, MajorDiscard_label.height * pixelScale )
+
+  image(MinorDeck_label, gridWPos * (5), gridHPos * 5, MinorDeck_label.width * pixelScale, MinorDeck_label.height * pixelScale )
+  image(MinorDiscard_label, gridWPos * (6), gridHPos * 5, MinorDiscard_label.width * pixelScale, MinorDiscard_label.height * pixelScale )
+  
 
   /*
   for (let b of branches) {
@@ -321,8 +354,29 @@ function mouseReleased() {
       drawMinorCard()
       minor.effectCardInPlay[i] = minor.deckShuffled[minor.cardID]
         
-      console.log("Sending CC:", minor.effectCardInPlay[i]);
-      midiOutput.channels[1].sendControlChange(1, minor.effectCardInPlay[i]);
+      console.log("Sending CC:", i, " ", minor.effectCardInPlay[i]);
+      midiOutput.channels[1].sendControlChange(i + 1, minor.effectCardInPlay[i]);
+
+      // apply loop state
+      if (minor.effectCardInPlay[i] === 1) {
+        console.log("looped")
+        isLooping[i] = true
+
+      } else if (minor.effectCardInPlay[i] === 2) {
+        console.log("unlooped")
+        isLooping[i] = false
+      }
+      // apply loop direction
+      if (minor.effectCardInPlay[i] === 7) {
+        console.log("direction: forward")
+        isLoopingForward[i] = true
+
+      } else if (minor.effectCardInPlay[i] === 6) {
+        console.log("direction: backward")
+        isLoopingForward[i] = false
+      }
+
+
     }
   }
 

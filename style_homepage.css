@@ -132,6 +132,11 @@ h1 {
   font-style: normal;
 }
 
+::selection {
+  color: white;
+  background: transparent;
+}
+
 img {
   image-rendering: pixelated;
   position: relative;
