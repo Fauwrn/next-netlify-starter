@@ -17,10 +17,7 @@ function preload() {
   entrance = loadImage('assets/images/entrance_bw.png');
 
   introduction = loadStrings('/assets/songs/introduction.txt');
-
-  shelter = loadStrings('/assets/songs/shelter.txt');
   solitaire = loadStrings('/assets/songs/solitaire.txt');
-
   blueSun = loadStrings('/assets/songs/blueSun.txt');
   bridleway = loadStrings('/assets/songs/bridleway.txt');
   emptyWalls = loadStrings('/assets/songs/emptyWalls.txt');

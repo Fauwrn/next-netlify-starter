@@ -43,12 +43,19 @@ let timelineHover = false;
 
 let branches = [];
 
+let story = [];
+let intro;
+let currentPage = 0;
+let storyPage;
+
 function preload() {
   backgroundImg = loadImage('assets/Tree04bw.png');
   font = loadFont('assets/AveriaSerifLibre-Bold.ttf');
   fire = loadImage('assets/fire.gif');
   keygif = loadImage('assets/key.gif');
   spiral = loadImage('assets/spiral_slow.gif');
+
+  intro = loadStrings('assets/text/introduction.txt');
 }
 
 function setup() {
@@ -73,7 +80,8 @@ function setup() {
 
   timerInput.changed(secondsLoad);
 
-  //timerValue = timerInput.value();
+  storyPage = [intro,intro,intro]
+  story = storyPage[currentPage]
 
 }
 
@@ -89,6 +97,29 @@ function draw() {
   if (debug == true){
     DEBUG_gridOutline();
   }
+
+   push(); 
+
+  //let floatY = sin(floatOffset) * 2; // drift up and down
+  //translate(floatY, floatY);
+
+  imageMode(CENTER);
+
+
+
+  //push();
+  rectMode(CENTER)
+  textAlign(CENTER,TOP)
+
+  textSize(20)
+  fill(255)
+  stroke(0)
+
+  for (let i = 0; i < story.length; i++) {
+    text(story[i], width*0.5, 160+(i*40), width*0.9)
+  }
+  pop();
+
 }
 
 function secondsLoad(){
@@ -96,10 +127,10 @@ function secondsLoad(){
 
 }
 
-function mousePressed() {
-  //if (mouseY >= 100 && mouseY <= 120 && mouseX >= 110 && mouseX <= 130){ 
-    //range accounting for text length
-  //}
+function mousePressed(){
+  currentPage = currentPage % (storyPage.length-1)
+  currentPage ++
+  story = storyPage[currentPage]
 }
 
 function mouseReleased() {
