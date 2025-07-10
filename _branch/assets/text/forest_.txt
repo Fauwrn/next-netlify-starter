@@ -1,0 +1,7 @@
+You walk towards the wilderness for some time, the path narrowing from the overgrowning fauna until it seems hardly a path at all.
+The forest is dark and still.
+Time has seemed to pass rapidly and the cold sets in. You're not sure how much longer you can walk in these conditions.
+
+make camp
+
+continue onward

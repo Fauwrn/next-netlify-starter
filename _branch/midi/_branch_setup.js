@@ -44,18 +44,30 @@ let timelineHover = false;
 let branches = [];
 
 let story = [];
+let splitChoices = [];
 let intro;
 let currentPage = 0;
 let storyPage;
 
-function preload() {
-  backgroundImg = loadImage('assets/Tree04bw.png');
-  font = loadFont('assets/AveriaSerifLibre-Bold.ttf');
-  fire = loadImage('assets/fire.gif');
-  keygif = loadImage('assets/key.gif');
-  spiral = loadImage('assets/spiral_slow.gif');
+let choice;
 
-  intro = loadStrings('assets/text/introduction.txt');
+let splitStory
+let storyJoin
+
+function preload() {
+  backgroundImg = loadImage('/_branch/assets/Tree04bw.png');
+  font = loadFont('/_branch/assets/AveriaSerifLibre-Bold.ttf');
+  fire = loadImage('/_branch/assets/fire.gif');
+  keygif = loadImage('/_branch/assets/key.gif');
+  spiral = loadImage('/_branch/assets/spiral_slow.gif');
+
+  intro = loadStrings('/_branch/assets/text/intro.txt');
+  forest_ = loadStrings('/_branch/assets/text/forest_.txt');
+  ruin_ = loadStrings('/_branch/assets/text/ruin_.txt');
+  ruin_L = loadStrings('/_branch/assets/text/ruin_L.txt');
+  ruin_R = loadStrings('/_branch/assets/text/ruin_R.txt');
+  camp = loadStrings('/_branch/assets/text/camp.txt');
+
 }
 
 function setup() {
@@ -80,7 +92,9 @@ function setup() {
 
   timerInput.changed(secondsLoad);
 
-  storyPage = [intro,intro,intro]
+  timerInput.hide()
+
+  storyPage = [intro,forest_,ruin_,ruin_L,ruin_R,camp]
   story = storyPage[currentPage]
 
 }
@@ -91,20 +105,13 @@ function draw() {
   background(0);
   stying();
 
-  if (uitext_show == true){
-    uitext();
-  }
   if (debug == true){
     DEBUG_gridOutline();
   }
 
    push(); 
 
-  //let floatY = sin(floatOffset) * 2; // drift up and down
-  //translate(floatY, floatY);
-
   imageMode(CENTER);
-
 
 
   //push();
@@ -115,22 +122,94 @@ function draw() {
   fill(255)
   stroke(0)
 
-  for (let i = 0; i < story.length; i++) {
-    text(story[i], width*0.5, 160+(i*40), width*0.9)
-  }
-  pop();
+  storyJoin = join(story,'\n')
+  splitStory = split(storyJoin, '...');
 
+  text(splitStory[0], width * 0.5, 160, width*0.5)
+
+
+  /*
+  for (let i = 0; i < story.length-3; i++) {
+    //text(story[i], width*0.5, 160+(i*40), width*0.9)
+  }
+  */
+  pop()
+
+  choice1()
+  choice2()
+
+
+  fill(255)
+  text(currentPage, width*0.5, height*0.7)
+  if (currentPage == 5){
+    //timeSet()
+  }
+  timeSet()
+
+}
+
+function choice1(){
+  push()
+
+  rectMode(CENTER)
+  textAlign(LEFT,TOP)
+  textSize(20)
+  fill(128)
+
+  if (mouseX < width/2){
+    fill(255)
+    choice = 1;
+  }
+
+  text(splitStory[1], width*0.25, 750, width*0.15)
+
+  pop()
+  
+}
+
+function choice2(){
+  push()
+
+  rectMode(CENTER)
+  textAlign(LEFT,TOP)
+  textSize(20)
+  fill(128)
+
+  if (mouseX > width/2){
+    fill(255)
+    choice = 2;
+  }
+
+  text(splitStory[2], width*0.75, 750, width*0.15)
+
+  pop()
+  
+}
+
+function timeSet(){
+  uitext()
+  timerInput.show()
 }
 
 function secondsLoad(){
   timerValue = timerInput.value();
-
+   uitext()
 }
 
 function mousePressed(){
-  currentPage = currentPage % (storyPage.length-1)
-  currentPage ++
+  //currentPage = currentPage % (storyPage.length-1)
+  //currentPage ++
+  //story = storyPage[currentPage]
+
+  if (choice == 1 ){
+    currentPage ++
+  } else if (choice == 2){
+    currentPage ++
+    currentPage ++
+  }
+
   story = storyPage[currentPage]
+
 }
 
 function mouseReleased() {
@@ -159,9 +238,6 @@ function uitext(){
 }
 
 function timeIt() {
-  //if (timerValue > 0) {
-  //  timerValue--;
-  //}
 }
 
 function stying(){
@@ -170,7 +246,7 @@ function stying(){
   image(spiral, gridWPos * (6.5) + (cardW) - (spiral.width * pixelScale) , gridHPos * 1, -spiral.width * pixelScale, spiral.height * pixelScale )
 
   //image(fire, gridWPos * 4 - ((fire.width * 2)/2) , gridHPos * 4 - ((fire.height * 2)/2), fire.width * 2, fire.height * 2 )
-  image(keygif, gridWPos * 4 - ((keygif.width * 2)/2) , gridHPos * 4 - ((keygif.height * 2)/2), keygif.width * 2, keygif.height * 2 )
+  //image(keygif, gridWPos * 4 - ((keygif.width * 2)/2) , gridHPos * 4 - ((keygif.height * 2)/2), keygif.width * 2, keygif.height * 2 )
 
   push();
     //image(backgroundImg,0,0)
@@ -191,7 +267,7 @@ function stying(){
 function keyTyped() {
     secondsLoad()
     if (keyCode === ENTER) {
-      window.open("_branch.html","_top");
+      window.open("/_branch/midi/_branch_midi.html","_top");
       storeItem('setupTime', timerValue);
     }
 }

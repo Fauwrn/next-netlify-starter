@@ -87,44 +87,44 @@ let timelineHover = false;
 let branches = [];
 
 function preload() {
-  backgroundImg = loadImage('assets/Tree04bw.png');
-  playerGif = loadImage('assets/PlayerBW.gif');
-  font = loadFont('assets/AveriaSerifLibre-Bold.ttf');
+  backgroundImg = loadImage('/_branch/assets/Tree04bw.png');
+  playerGif = loadImage('/_branch/assets/PlayerBW.gif');
+  font = loadFont('/_branch/assets/AveriaSerifLibre-Bold.ttf');
 
-  I_label = loadImage('assets/other/labels_b/I_label.png');
-  II_label = loadImage('assets/other/labels_b/II_label.png');
-  III_label = loadImage('assets/other/labels_b/III_label.png');
-  IV_label = loadImage('assets/other/labels_b/IV_label.png');
+  I_label = loadImage('/_branch/assets/other/labels_b/I_label.png');
+  II_label = loadImage('/_branch/assets/other/labels_b/II_label.png');
+  III_label = loadImage('/_branch/assets/other/labels_b/III_label.png');
+  IV_label = loadImage('/_branch/assets/other/labels_b/IV_label.png');
 
-  MajorDeck_label = loadImage('assets/other/labels_b/MajorDeck_label.png');
-  MajorDiscard_label = loadImage('assets/other/labels_b/MajorDiscard_label.png');
-  MinorDeck_label = loadImage('assets/other/labels_b/MinorDeck_label.png');
-  MinorDiscard_label = loadImage('assets/other/labels_b/MinorDiscard_label.png');
+  MajorDeck_label = loadImage('/_branch/assets/other/labels_b/MajorDeck_label.png');
+  MajorDiscard_label = loadImage('/_branch/assets/other/labels_b/MajorDiscard_label.png');
+  MinorDeck_label = loadImage('/_branch/assets/other/labels_b/MinorDeck_label.png');
+  MinorDiscard_label = loadImage('/_branch/assets/other/labels_b/MinorDiscard_label.png');
   
 
   for (let i = 0; i < loopLimit; i++) {
 
-    loop0_card_graphic[i] = loadImage('assets/cards/'+cardScheme+'/loopCards/loop0_card_'+i+'.png');
-    loop1_card_graphic[i] = loadImage('assets/cards/'+cardScheme+'/loopCards/loop1_card_'+i+'.png');
-    loop2_card_graphic[i] = loadImage('assets/cards/'+cardScheme+'/loopCards/loop2_card_'+i+'.png');
-    loop3_card_graphic[i] = loadImage('assets/cards/'+cardScheme+'/loopCards/loop3_card_'+i+'.png');
+    loop0_card_graphic[i] = loadImage('/_branch/assets/cards/'+cardScheme+'/loopCards/loop0_card_'+i+'.png');
+    loop1_card_graphic[i] = loadImage('/_branch/assets/cards/'+cardScheme+'/loopCards/loop1_card_'+i+'.png');
+    loop2_card_graphic[i] = loadImage('/_branch/assets/cards/'+cardScheme+'/loopCards/loop2_card_'+i+'.png');
+    loop3_card_graphic[i] = loadImage('/_branch/assets/cards/'+cardScheme+'/loopCards/loop3_card_'+i+'.png');
 
     //loopCards[i] = loop0_card_graphic[i]
 
   }
   for (let i = 0; i < major.deckSize; i++) {
-    major.cardGraphics[i] = loadImage('assets/cards/'+cardScheme+'/majorCards/major_card_'+i+'.png');
+    major.cardGraphics[i] = loadImage('/_branch/assets/cards/'+cardScheme+'/majorCards/major_card_'+i+'.png');
   }
   for (let i = 0; i < minor.deckSize; i++) {
-    minor.cardGraphics[i] = loadImage('assets/cards/'+cardScheme+'/minorCards/minor_card_'+i+'.png');
+    minor.cardGraphics[i] = loadImage('/_branch/assets/cards/'+cardScheme+'/minorCards/minor_card_'+i+'.png');
   }
 
-  looping_graphic_false_forward = loadImage('assets/other/loopSpiral_false_forwards.gif');
-  looping_graphic_true_forward = loadImage('assets/other/loopSpiral_true_forwards.gif');
-  looping_graphic_false_backward = loadImage('assets/other/loopSpiral_false_backwards.gif');
-  looping_graphic_true_backward = loadImage('assets/other/loopSpiral_true_backwards.gif');
+  looping_graphic_false_forward = loadImage('/_branch/assets/other/loopSpiral_false_forwards.gif');
+  looping_graphic_true_forward = loadImage('/_branch/assets/other/loopSpiral_true_forwards.gif');
+  looping_graphic_false_backward = loadImage('/_branch/assets/other/loopSpiral_false_backwards.gif');
+  looping_graphic_true_backward = loadImage('/_branch/assets/other/loopSpiral_true_backwards.gif');
 
-  spiral = loadImage('assets/spiral_slow.gif');
+  spiral = loadImage('/_branch/assets/spiral_slow.gif');
 }
 
 function setup() {
@@ -204,6 +204,18 @@ function draw() {
   background(0);
   //translate(alignCorrection,0); // makes everything central, but then the mouse pos is off
   stying();
+
+    //labels
+  image(I_label, gridWPos * (1), gridHPos * 1.5, I_label.width * pixelScale, I_label.height * pixelScale )
+  image(II_label, gridWPos * (2), gridHPos * 1.5, II_label.width * pixelScale, II_label.height * pixelScale )
+  image(III_label, gridWPos * (3), gridHPos * 1.5, III_label.width * pixelScale, III_label.height * pixelScale )
+  image(IV_label, gridWPos * (4), gridHPos * 1.5, IV_label.width * pixelScale, IV_label.height * pixelScale )
+  image(MajorDeck_label, gridWPos * (5), gridHPos * 1.5, MajorDeck_label.width * pixelScale, MajorDeck_label.height * pixelScale )
+  image(MajorDiscard_label, gridWPos * (6), gridHPos * 1.5, MajorDiscard_label.width * pixelScale, MajorDiscard_label.height * pixelScale )
+
+  image(MinorDeck_label, gridWPos * (5), gridHPos * 5, MinorDeck_label.width * pixelScale, MinorDeck_label.height * pixelScale )
+  image(MinorDiscard_label, gridWPos * (6), gridHPos * 5, MinorDiscard_label.width * pixelScale, MinorDiscard_label.height * pixelScale )
+  
 
 
   //////////////////////////////draws shuffled minor deck//////////////////////////////
@@ -293,17 +305,6 @@ function draw() {
     major.deck[i].show(major.cardGraphics[major.deckShuffled[major.cardID]]);
   }
 
-  //labels
-  image(I_label, gridWPos * (1), gridHPos * 1.5, I_label.width * pixelScale, I_label.height * pixelScale )
-  image(II_label, gridWPos * (2), gridHPos * 1.5, II_label.width * pixelScale, II_label.height * pixelScale )
-  image(III_label, gridWPos * (3), gridHPos * 1.5, III_label.width * pixelScale, III_label.height * pixelScale )
-  image(IV_label, gridWPos * (4), gridHPos * 1.5, IV_label.width * pixelScale, IV_label.height * pixelScale )
-  image(MajorDeck_label, gridWPos * (5), gridHPos * 1.5, MajorDeck_label.width * pixelScale, MajorDeck_label.height * pixelScale )
-  image(MajorDiscard_label, gridWPos * (6), gridHPos * 1.5, MajorDiscard_label.width * pixelScale, MajorDiscard_label.height * pixelScale )
-
-  image(MinorDeck_label, gridWPos * (5), gridHPos * 5, MinorDeck_label.width * pixelScale, MinorDeck_label.height * pixelScale )
-  image(MinorDiscard_label, gridWPos * (6), gridHPos * 5, MinorDiscard_label.width * pixelScale, MinorDiscard_label.height * pixelScale )
-  
 
   /*
   for (let b of branches) {

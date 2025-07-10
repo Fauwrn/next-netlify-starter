@@ -10,11 +10,11 @@ let counter = 0;
 
 function preload() {
   ///////////////////////////////////////////////   load images
-  bgImg = loadImage('assets/background_images/Tree04bw.png');
-  playerGif = loadImage('assets/PlayerBW.gif');
-  fireGif = loadImage('assets/images/fire.gif');
-  keyGif = loadImage('assets/images/key.gif');
-  entrance = loadImage('assets/images/entrance_bw.png');
+  bgImg = loadImage('/assets/background_images/Tree04bw.png');
+  playerGif = loadImage('/assets/PlayerBW.gif');
+  fireGif = loadImage('/assets/images/fire.gif');
+  keyGif = loadImage('/assets/images/key.gif');
+  entrance = loadImage('/assets/images/entrance_bw.png');
 
   gif = [playerGif,fireGif,keyGif]
 

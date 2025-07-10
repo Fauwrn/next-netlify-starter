@@ -1,0 +1,3 @@
+cd /Users/benthorn/Desktop/BenjaminThornArtWebsite/Website/
+node osc_server.js
+open 'http://youtube.com'
