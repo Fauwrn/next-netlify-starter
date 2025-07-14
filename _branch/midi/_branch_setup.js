@@ -109,7 +109,21 @@ function draw() {
     DEBUG_gridOutline();
   }
 
-   push(); 
+  //storyDisplay()
+  //choice1()
+  //choice2()
+
+
+  fill(255)
+  text(currentPage, width*0.5, height*0.7)
+  if (currentPage == 5){
+    //timeSet()
+  }
+  timeSet()
+
+}
+
+function storyDisplay(){
 
   imageMode(CENTER);
 
@@ -126,26 +140,6 @@ function draw() {
   splitStory = split(storyJoin, '...');
 
   text(splitStory[0], width * 0.5, 160, width*0.5)
-
-
-  /*
-  for (let i = 0; i < story.length-3; i++) {
-    //text(story[i], width*0.5, 160+(i*40), width*0.9)
-  }
-  */
-  pop()
-
-  choice1()
-  choice2()
-
-
-  fill(255)
-  text(currentPage, width*0.5, height*0.7)
-  if (currentPage == 5){
-    //timeSet()
-  }
-  timeSet()
-
 }
 
 function choice1(){

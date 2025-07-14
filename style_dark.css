@@ -1,13 +1,13 @@
 html, body {
   margin: 0px 0px;
   padding: 0;
-  text-shadow: 0px 0px 2px white;
+  text-shadow: 0px 0px 2px black;
   overflow-x: hidden;
 
-  color: black;
-  background-color: white;
+  color: white;
+  background-color: black;
   outline-style: solid;
-  outline-color: white; 
+  outline-color: black; 
 
   font-family: "Radio Canada Big", sans-serif;
   font-family: "Crimson Text", serif;
@@ -85,7 +85,7 @@ a:hover {
 }
 
 a {
-  color: black;
+  color: white;
   text-decoration: none;
   line-height: 1;
 }
@@ -139,14 +139,14 @@ h2 {
 }
 
 ::selection {
-  color: white;
-  background: black;
-  text-shadow: 0px 0px 0px white;
+  color: black;
+  background: white;
+  text-shadow: 0px 0px 0px black;
 }
 
 mark {
-  color: white;
-  background: black;
+  color: black;
+  background: white;
   text-shadow: 0px 0px 0px white;
 }
 
@@ -188,26 +188,9 @@ img:hover{
   text-align: center;
 }
 
-.song {
-  margin: 5em auto;
-  padding: 1em;
-  max-width: 500px;
-  text-align: center;
-  font-family: Averia Serif Libre, sans-serif;
-  font-size: 10px;
-  text-shadow: 1px 1px 1px black;
-  line-height: 1.5;
-
-  border: 1px solid #ffffff;
-
-  .song h1 {
-    font-size: 24px;
-  }
-
-}
 
 .hidden-text{
-  color: white;
+  color: black;
 }
 
 * {

@@ -12,9 +12,9 @@ let songName = [];
 
 function preload() {
   ///////////////////////////////////////////////   load images
-  bgImg = loadImage('assets/background_images/Tree04bw.png');
-  gif = loadImage('assets/PlayerBW.gif');
-  entrance = loadImage('assets/images/entrance_bw.png');
+  bgImg = loadImage('/assets/background_images/Tree04bw.png');
+  gif = loadImage('/assets/PlayerBW.gif');
+  entrance = loadImage('/assets/images/entrance_bw.png');
 
   introduction = loadStrings('/assets/songs/introduction.txt');
   solitaire = loadStrings('/assets/songs/solitaire.txt');
