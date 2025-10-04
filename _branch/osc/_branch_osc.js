@@ -6,7 +6,7 @@ let backgroundImg;
 let font;
 let textColour = 255;
 let cardScheme = 'bw_small';
-let pixelScale = 15;
+let pixelScale = 12; //15
 
 let uitext_show = false;
 let debug = false;
@@ -21,8 +21,9 @@ let deckSpacing = 1.5;
 let alignCorrection;
 
 //Card Dimensions // cardH = 256 or 261 or 255
-const cardH = 255;
-const cardW = 192;
+let cardH = 255;
+let cardW = 192;
+
 let cardCount = 6;
 
 let major = {
@@ -149,6 +150,12 @@ function setup() {
   timerValue = initialTimerValue;
   setInterval(timeIt, 1000);
 
+
+  ///////////////////////////////////////
+  cardH = major.cardGraphics[0].height * pixelScale
+  cardW = major.cardGraphics[0].width * pixelScale
+  ///////////////////////////////////////
+
   gridWPos = width / gridWDiv;
   gridHPos = height / gridHDiv;
 
@@ -157,11 +164,12 @@ function setup() {
 
   alignCorrection = gridWPos/2-cardW/2
 
-  timerHeight = cardH*0.1
+  timerHeight = cardH * 0.1
   timerWidth = gridWPos * 5 + cardW
   timerPosX = gridWPos * 4
   timerPosY = gridHPos * 1
   timelineBar = new timeline(gridWPos, gridHPos * 1)
+
 
   textFont(font);
 
@@ -551,7 +559,6 @@ function cardRender(slot, hover, imageSet, x, y) {
   slot.show(imageSet,x,y);
   return hover
 }
-
 
 //DEBUG GRID
 function DEBUG_gridOutline(){

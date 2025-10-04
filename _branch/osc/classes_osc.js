@@ -197,8 +197,8 @@ class timelineCard {
     let miniCardH = cardH/5
     if (this.time < timerValue){
 
-      text(timerValue -(this.time) + ' secs', this.x, this.y - 20);
-      text(this.cardName, this.x, this.y - 40);
+      //text(timerValue -(this.time) + ' secs', this.x, this.y - 20);
+      //text(this.cardName, this.x, this.y - 40);
 
       stroke(255)
       rect(this.x, this.y, this.w, this.h);

@@ -36,8 +36,10 @@ function draw() {
   y = lerp(y, mouseY, 0.05);
 
   imageMode(CENTER);
-
-  image(gif[counter],x,y,gif[counter].height/2,gif[counter].width/2);
+  imgsize = 1 - (mouseY/height)
+  imgsize = 0.75
+  //text(imgsize,width/2,height/2)
+  image(gif[counter],x,y, (gif[counter].height/1.5) * imgsize, (gif[counter].width/1.5) * imgsize);
 
   //line(pmouseX, pmouseY, mouseX, mouseY);
 }
