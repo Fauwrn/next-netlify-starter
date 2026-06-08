@@ -188,6 +188,14 @@ img:hover{
   text-align: center;
 }
 
+.centered {
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 
 .hidden-text{
   color: black;
